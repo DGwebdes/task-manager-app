@@ -1,0 +1,21 @@
+.task-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.task-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-card h3 {
+    margin-top: 0;
+}
+
+.task-card button {
+    margin-right: 8px;
+}
