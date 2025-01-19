@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import API from '../services/api';
+import CreateTaskPopup from "../components/CreateTaskPopup";
 import '../styles/taskDashboard.css';
 
 const FILTER_OPTIONS = {
@@ -9,7 +10,7 @@ const FILTER_OPTIONS = {
 };
 
 const TaskDashboard = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -18,6 +19,7 @@ const TaskDashboard = () => {
         completed: '',
         dueDate: ''
     });
+    const [showPopup, setShowPopup] = useState(false);
 
     const fetchTasks = useCallback(async() => {
         setLoading(true);
@@ -36,9 +38,15 @@ const TaskDashboard = () => {
         fetchTasks();
     }, [fetchTasks]);
 
-    // const handleCreateTask = async (newTask) => {
-
-    // }
+    const handleCreateTask = async (newTask) => {
+        try {
+            const response = await API.post('tasks', newTask);
+            setTasks((prevTask) => [...prevTask, response.data]);
+            setShowPopup(false);
+        } catch (error) {
+            setErrorMessage('Error creating task', error)
+        }
+    }
 
     const toggleTaskCompletion = async (taskId, currentStatus) => {
         try {
@@ -72,6 +80,7 @@ const TaskDashboard = () => {
     return (
         <>
             <h1>Dashboard</h1>
+            <button onClick={() => setShowPopup(true)}>Create Task</button>
             <FilterForm filters={filters} handleFilterChange={handleFilterChange} />
             { loading ? (
                 <p>Loading tasks...</p>
@@ -83,6 +92,14 @@ const TaskDashboard = () => {
                     errorMessage={errorMessage}
                 />
             )}
+            {
+                showPopup && (
+                    <CreateTaskPopup
+                        onClose={() => setShowPopup(false)}
+                        onCreate={handleCreateTask}
+                    />
+                )
+            }
         </>
     )
 }
