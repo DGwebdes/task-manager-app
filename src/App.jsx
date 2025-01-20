@@ -7,6 +7,7 @@ import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './context/ProtectedRoute.jsx';
+import ErrorBoundary from './utils/ErrorBoundary.jsx'
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <>
     <Navbar />
       <Router>
+        <ErrorBoundary>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path='/login' element={<LoginPage />} />
@@ -21,6 +23,7 @@ function App() {
             <Route path='/dashboard' element={<ProtectedRoute><TaskDashboard /></ProtectedRoute>} />
             <Route path='/profile' element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
           </Routes>
+        </ErrorBoundary>
       </Router>
     </>
   )

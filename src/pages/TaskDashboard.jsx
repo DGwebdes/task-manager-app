@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 // import { useNavigate } from 'react-router-dom';
 import API from '../services/api';
 import CreateTaskPopup from "../components/CreateTaskPopup";
+import EditTasksPopup from '../components/EditTasksPopup';
+import {errorHandler} from '../utils/errorHandler.js';
 import '../styles/taskDashboard.css';
 
 const FILTER_OPTIONS = {
@@ -13,13 +15,14 @@ const TaskDashboard = () => {
     // const navigate = useNavigate();
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
     const [filters, setFilters] = useState({
         priority: '',
         completed: '',
         dueDate: ''
     });
     const [showPopup, setShowPopup] = useState(false);
+    const [showEditPopup, setShowEditPopup] = useState(false);
+    const [taskToEdit, setTaskToEdit] = useState(null);
 
     const fetchTasks = useCallback(async() => {
         setLoading(true);
@@ -27,14 +30,13 @@ const TaskDashboard = () => {
             const response = await API.get('tasks', { params: filters });
             setTasks(response.data);
         } catch (error) {
-            setErrorMessage('Error fetching tasks', error);
+            errorHandler(error, 'Error fetching tasks');
         } finally {
             setLoading(false);
         }
     }, [filters]);
 
     useEffect(() => {
-        console.log("Wiiii");
         fetchTasks();
     }, [fetchTasks]);
 
@@ -44,7 +46,17 @@ const TaskDashboard = () => {
             setTasks((prevTask) => [...prevTask, response.data]);
             setShowPopup(false);
         } catch (error) {
-            setErrorMessage('Error creating task', error)
+            errorHandler(error, 'Error creating task');
+        }
+    };
+
+    const handleTaskEdit = async (taskId, updatedTask) => {
+        try {
+            const response = await API.put(`/tasks/${taskId}`, updatedTask);
+            setTasks((prevTask) => prevTask.map((task) => task._id === taskId ? response.data : task));
+            setShowEditPopup(false);
+        } catch (error) {
+            errorHandler(error, 'Error updating task');
         }
     }
 
@@ -57,7 +69,7 @@ const TaskDashboard = () => {
                 )
             );
         } catch (error) {
-            setErrorMessage('Error changing task status', error)
+            errorHandler(error, 'Error changing task status');
         }
     };
 
@@ -66,7 +78,7 @@ const TaskDashboard = () => {
             await API.delete(`/tasks/${taskId}`);
             setTasks(prevTask => prevTask.filter(task => task._id !== taskId));
         } catch (error) {
-            setErrorMessage('Error deleting task', error)
+            errorHandler(error, 'Error deleting task');
         }
     };
 
@@ -89,7 +101,8 @@ const TaskDashboard = () => {
                     tasks={tasks}
                     toggleTaskCompletion={toggleTaskCompletion}
                     deleteTask={deleteTask}
-                    errorMessage={errorMessage}
+                    setTaskToEdit={setTaskToEdit}
+                    setShowEditPopup={setShowEditPopup}
                 />
             )}
             {
@@ -97,6 +110,15 @@ const TaskDashboard = () => {
                     <CreateTaskPopup
                         onClose={() => setShowPopup(false)}
                         onCreate={handleCreateTask}
+                    />
+                )
+            }
+            {
+                showEditPopup && (
+                    <EditTasksPopup
+                        task={taskToEdit}
+                        onClose={() => setShowEditPopup(false)}
+                        onEdit={handleTaskEdit}
                     />
                 )
             }
@@ -142,9 +164,8 @@ const FilterForm = ({ filters, handleFilterChange }) => (
     </>
 );
 
-const TaskCards = ({ tasks, toggleTaskCompletion, deleteTask, errorMessage }) => (
+const TaskCards = ({ tasks, toggleTaskCompletion, deleteTask,  setTaskToEdit, setShowEditPopup }) => (
     <>
-        {errorMessage && <p>{errorMessage}</p>}
         <div className="task-cards">
             {
                 tasks.length === 0 ? (
@@ -156,6 +177,8 @@ const TaskCards = ({ tasks, toggleTaskCompletion, deleteTask, errorMessage }) =>
                             task={task}
                             toggleTaskCompletion={toggleTaskCompletion}
                             deleteTask={deleteTask}
+                            setTaskToEdit={setTaskToEdit}
+                            setShowEditPopup={setShowEditPopup}
                         />
                     ))
                 )
@@ -164,7 +187,7 @@ const TaskCards = ({ tasks, toggleTaskCompletion, deleteTask, errorMessage }) =>
     </>
 )
 
-const TaskCard = ({ task, toggleTaskCompletion, deleteTask }) => (
+const TaskCard = ({ task, toggleTaskCompletion, deleteTask, setShowEditPopup, setTaskToEdit }) => (
     <div className="task-card">
         <h3>{task.title}</h3>
         <p>Priority: {task.priority}</p>
@@ -176,6 +199,12 @@ const TaskCard = ({ task, toggleTaskCompletion, deleteTask }) => (
         <button onClick={() => deleteTask(task._id)}>
             Delete
         </button>
+        <button
+            onClick={()=>{
+                setTaskToEdit(task);
+                setShowEditPopup(true);
+            }}
+        >Edit</button>
     </div>
 )
 

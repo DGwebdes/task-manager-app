@@ -15,7 +15,7 @@ const FormField = ({ label, type, register, errors }) => {
 
 const LoginPage = () => {
     const {register, handleSubmit, formState: { errors }} = useForm();
-    const { login, loading, authState } = useAuthContext();
+    const { login, loading } = useAuthContext();
     const navigate = useNavigate();
 
     const onSubmit = async(data) => {
