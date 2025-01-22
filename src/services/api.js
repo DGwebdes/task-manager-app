@@ -18,32 +18,42 @@ API.interceptors.request.use(
   }
 );
 
-// API.interceptors.response.use(
-//     (response) => {
-//         return response
-//     }, (error) => {
-//         if (error.response && error.response.status === 401) {
-//             localStorage.removeItem('authToken');
-//         }
-//         return Promise.reject(error)
-//     }
-// );
 API.interceptors.response.use(
   (response) => {
     return response; // If the response is successful, return it as is.
   },
-  (error) => {
+  async (error) => {
+    const originalRequest = error.config;
+
+    //If the error is 401 and is not a retry request
+    if (error.response && error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      try {
+        const refreshToken = localStorage.getItem('refreshToken');
+        if (!refreshToken) {
+          throw new Error('No refresh token available');
+        }
+        const { data } = await API.post('/refresh-token', { refreshToken });
+        const { accessToken, refreshToken: newRefreshToken} = data;
+
+        localStorage.setItem('authToken', accessToken);
+        localStorage.setItem('refreshToken', newRefreshToken);
+
+        originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+        return API(originalRequest);
+      } catch (refreshError) {
+        localStorage.clear();
+        // Optionally redirect to login page
+        // window.location.href = '/login';
+        return Promise.reject(refreshError);
+      }
+    }
+    //Handle other status code
     if (error.response) {
       const { status, data } = error.response;
 
       // Handle specific status codes
       switch (status) {
-        case 401: // Unauthorized
-          localStorage.removeItem('authToken');
-          // Optionally redirect to login page
-          // window.location.href = '/login';
-          break;
-
         case 403: // Forbidden
           console.error('You do not have permission to perform this action.');
           alert('Access denied. Please contact support if you think this is a mistake.');

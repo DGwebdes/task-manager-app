@@ -18,7 +18,7 @@ const useAuth = () => {
         const token = localStorage.getItem('authToken');
         const user = JSON.parse(localStorage.getItem('authUser'));
         if (token && user){
-            console.log('user authenticated', user)
+            // console.log('user authenticated')
             setAuthState({ token, user, isAuthenticated: true });
         } else {
             console.log('user not authenticated')
@@ -31,14 +31,15 @@ const useAuth = () => {
     const login = async (credentials) => {
         try {
             const response = await API.post('/auth/login', credentials);
-            console.log("Response from request authContext: ", response);
-            const {token, user} = response.data;
+            // console.log("Response from request authContext: ", response);
+            const {token, user, refreshToken } = response.data;
 
-            if (!token || !user){
-                console.log('User not found or Invalid credentials');
+            if (!token || !user || !refreshToken){
+                // console.log('User not found or Invalid credentials');
                 throw new Error('Invalid credentials');
             }
             localStorage.setItem('authToken', token);
+            localStorage.setItem('refreshToken', refreshToken);
             localStorage.setItem('authUser', JSON.stringify(user));
 
             //update state
@@ -54,6 +55,7 @@ const useAuth = () => {
     const logout = () => {
         //clear storage and state
         localStorage.removeItem('authToken');
+        localStorage.removeItem('refreshToken');
         localStorage.removeItem('authUser');
         setAuthState({ token: null, user: null, isAuthenticated: false });
 
