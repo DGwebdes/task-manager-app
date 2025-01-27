@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+    justify-content: center;
 }
 
 .task-card {
@@ -15,7 +16,6 @@
 .task-card h3 {
     margin-top: 0;
 }
-
-.task-card button {
-    margin-right: 8px;
+.task-card > button {
+    margin: 3px;
 }

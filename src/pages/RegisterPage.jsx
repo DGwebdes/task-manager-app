@@ -4,18 +4,23 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import API from '../services/api';
 import schema from '../services/schemaRegister.js';
+import '../styles/formPage.css'
 
 const FormField = ({ label, type, register, errors }) => {
     const fieldName = label.toLowerCase().replace(' ', '');
     return (
-        <div>
-            <label>{label}:</label>
-            <input type={type} {...register(
-                fieldName === 'email' ? 'email' : fieldName,
-                { required : `${label} is required`}
-            )} />
+        <>
+            <div>
+                <label>{label}:</label>
+                <input type={type} {...register(
+                    fieldName === 'email' ? 'email' : fieldName,
+                    { required : `${label} is required`}
+                )} />
+            </div>
+            <div className="error-message">
             {errors[fieldName] && <p>{errors[fieldName].message}</p>}
-        </div>
+            </div>
+        </>
 )};
 
 
@@ -46,19 +51,21 @@ const RegisterPage = () => {
     }
 
     return (
-        <>
-            <h1>Register</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <FormField label="Username" name="username" type="text" register={register} errors={errors} />
-                <FormField label="Email" name="email" type="email" register={register} errors={errors} />
-                <FormField label="Password" name="password" type="password" register={register} errors={errors} />
-                <FormField label="Confirm Password" name="confirmpassword" type="password" register={register} errors={errors} />
-                <button type="submit" disabled={loading}>
-                    {loading ? 'Loading...' : 'Register'}
-                </button>
-                {errorMessage && <p>{errorMessage}</p>}
-            </form>
-        </>
+        <main>
+            <div className='form-wrapper'>
+                <h1>Register</h1>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <FormField label="Username" name="username" type="text" register={register} errors={errors} />
+                    <FormField label="Email" name="email" type="email" register={register} errors={errors} />
+                    <FormField label="Password" name="password" type="password" register={register} errors={errors} />
+                    <FormField label="Confirm Password" name="confirmpassword" type="password" register={register} errors={errors} />
+                    <button type="submit" disabled={loading}>
+                        {loading ? 'Loading...' : 'Register'}
+                    </button>
+                    {errorMessage && <p>{errorMessage}</p>}
+                </form>
+            </div>
+        </main>
     )
 }
 

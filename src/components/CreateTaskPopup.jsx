@@ -5,6 +5,7 @@ const CreateTaskPopup = ({ onClose, onCreate }) => {
     const [taskData, setTaskData] = useState({
         title: '',
         priority: '',
+        description: '',
         dueDate: ''
     });
     const [errorMessage, setErrorMessage] = useState('');
@@ -54,6 +55,15 @@ const CreateTaskPopup = ({ onClose, onCreate }) => {
                         <option value="medium">Medium</option>
                         <option value="high">High</option>
                     </select>
+                </div>
+                <div>
+                    <label htmlFor="description">Description</label>
+                    <textarea
+                        name="description"
+                        id="description"
+                        value={taskData.description}
+                        onChange={handleChange}
+                    />
                 </div>
                 <div>
                     <label htmlFor="dueDate">DueDate</label>

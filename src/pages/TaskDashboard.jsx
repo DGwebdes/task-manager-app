@@ -90,7 +90,7 @@ const TaskDashboard = () => {
     ;}
 
     return (
-        <>
+        <main>
             <h1>Dashboard</h1>
             <button onClick={() => setShowPopup(true)}>Create Task</button>
             <FilterForm filters={filters} handleFilterChange={handleFilterChange} />
@@ -122,7 +122,7 @@ const TaskDashboard = () => {
                     />
                 )
             }
-        </>
+        </main>
     )
 }
 

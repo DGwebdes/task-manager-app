@@ -11,12 +11,23 @@
 }
 
 .popup-card {
-    background: white;
+    background: #242424;
     padding: 20px;
     border-radius: 8px;
-    width: 400px;
+    width: 420px;
     max-width: 90%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-card > form > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: .2rem;
+    gap: 2px;
+}
+.popup-card > form > button {
+    margin: 3px;
 }
 
 .error {
@@ -24,6 +35,3 @@
     margin-bottom: 10px;
 }
 
-button {
-    margin: 5px;
-}
