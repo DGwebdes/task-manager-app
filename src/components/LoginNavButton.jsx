@@ -11,7 +11,7 @@ const LoginNavButton = () => {
     }
   return (
     <button onClick={handleClick} disabled={loading}>
-        { loading ? 'Loading...' : authState.isAuthenticated ? 'Logout' : 'Login'}
+        { loading ? 'Loading...' : authState.isAuthenticated ? 'Logout' : 'Login / Register'}
     </button>
   )
 }

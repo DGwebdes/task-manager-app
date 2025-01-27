@@ -44,7 +44,7 @@ const RegisterPage = () => {
         } catch (error) {
             console.log("error:", error);
             setErrorMessage(error.response?.data?.message ||
-                (error.message === 'Network Error' ? 'Unable to connect to the server.' : 'An unexpected error occurred.'));
+                (error.message === 'Network Error' ? 'Unable to connect to the server.' : error.response.data.error.message));
         } finally {
             setLoading(false);
         }

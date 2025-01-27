@@ -14,6 +14,7 @@
 }
 body {
   margin: 0 auto;
+  /* padding: 0.5rem; */
 }
 
 #root {
@@ -25,6 +26,14 @@ body {
 a {
   text-decoration: none;
 }
+a:hover, a:focus {
+  color: #5c6bc0; /* Subtle hover color */
+}
+button:hover, button:focus {
+  background-color: #5c6bc0;
+  cursor: pointer;
+}
+
 
 main {
   /* border: 1px solid red; */
@@ -39,11 +48,32 @@ main {
   justify-content: center;
   gap: 5px;
 }
-
-main > img {
+main > section > img {
   width: 350px;
   height: 350px;
 }
+
+section {
+  width: 100%;
+  /* border: 1px solid red; */
+  display: flex;
+}
+
+.main-content {
+  align-self: center;
+  max-width: 75%;
+  padding: .5rem;
+}
+
+.lists {
+  display: flex;
+}
+.content-list {
+  flex: 1;
+  padding: .5rem;
+  /* border: 1px solid green; */
+}
+
 h1 {
   font-size: 2.2em;
   line-height: 1.1;
@@ -59,5 +89,67 @@ h1 {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+
+/* Large screens (desktops and larger tablets) */
+@media (min-width: 1200px) {
+  main {
+    width: 60%; /* Reduce width to avoid overwhelming the viewport */
+  }
+  h1 {
+    font-size: 2.5em;
+  }
+  .content-list > img {
+    width: 150px;
+    height: 150px; /* Larger image size for better visibility */
+  }
+}
+
+/* Medium screens (tablets, small laptops) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  main {
+    width: 80%; /* Keep the layout balanced on medium screens */
+  }
+  .content-list > img {
+    width: 130px;
+    height: 130px; /* Slightly smaller images */
+  }
+  h1 {
+    font-size: 2em;
+  }
+}
+
+/* Small screens (phones) */
+@media (max-width: 767px) {
+  main {
+    width: 90%; /* Utilize most of the screen width */
+    padding: 0.5rem; /* Reduce padding for small screens */
+  }
+  section {
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center;
+  }
+  .content-list {
+    padding: 0.25rem; /* Adjust padding for smaller space */
+  }
+  .content-list > img {
+    width: 100px;
+    height: 100px; /* Reduce image size for small screens */
+  }
+  h1 {
+    font-size: 1.8em;
+  }
+}
+
+/* Extra small screens (very narrow phones) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5em; /* Ensure text fits without wrapping awkwardly */
+  }
+  .content-list > img {
+    width: 80px;
+    height: 80px; /* Further reduce image size */
   }
 }
