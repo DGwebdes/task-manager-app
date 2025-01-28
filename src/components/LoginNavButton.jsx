@@ -6,7 +6,7 @@ const LoginNavButton = () => {
         if (authState.isAuthenticated) {
             logout();
         } else {
-            window.location.href = '/task-manager-app/login';
+            window.location.href = '/login';
         }
     }
   return (
