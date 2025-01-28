@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "gh-pages -d build"
+    "deploy": "vite gh-pages"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
