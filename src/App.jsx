@@ -13,7 +13,7 @@ function App() {
   return (
     <>
     <Navbar />
-      <Router>
+      <Router basename='/task-manager-app'>
         <ErrorBoundary>
           <Routes>
             <Route path="/" element={<HomePage />} />
