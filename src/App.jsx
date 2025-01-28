@@ -16,7 +16,7 @@ function App() {
   return (
     <>
     <Navbar />
-      <Router basename='/task-manager-app'>
+      <Router basename="/task-manager-app">
         <ErrorBoundary>
           <React.Suspense fallback={<div> Loading... </div>}>
             <Routes>
