@@ -31,15 +31,15 @@ const HomePage = () => {
                     <h2>👋 Welcome aboard—let&apos;s get things done together!</h2>
                     <div className="lists">
                         <div className="content-list">
-                            <img src="/task-manager-app/free.png" alt="" />
+                            <img src="/free.png" alt="" />
                             <p>Create your account in just a few clicks. No long forms—just your name, email, and a strong password to get started!</p>
                         </div>
                         <div className="content-list">
-                            <img src="/task-manager-app/smart.png" alt="" />
+                            <img src="/smart.png" alt="" />
                             <p>Login and dive into a world where managing your tasks feels effortless.</p>
                         </div>
                         <div className="content-list">
-                            <img src="/task-manager-app/daily.png" alt="" />
+                            <img src="/daily.png" alt="" />
                             <p>Watch your productivity soar as you stay on top of everything that matters.</p>
                         </div>
                     </div>

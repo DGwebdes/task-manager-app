@@ -16,7 +16,7 @@ function App() {
   return (
     <>
     <Navbar />
-      <Router basename="/">
+      <Router>
         <ErrorBoundary>
           <React.Suspense fallback={<div> Loading... </div>}>
             <Routes>
