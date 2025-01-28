@@ -7,5 +7,5 @@ status=200
   functions = "netlify/functions"  # Path to the functions directory
 
 [[functions]]
-  name = "pingServer"
+  name = "pingRender"
   schedule = "*/5 * * * *"  # Runs every 5 minutes
