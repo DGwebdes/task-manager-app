@@ -1,0 +1,1 @@
+.form-wrapper{max-width:420px;display:flex;flex-direction:column;padding:1rem 2rem;border:1px solid #fcfcfcfc;border-radius:2rem;margin-bottom:.2rem}.form-wrapper>form>div{display:flex;flex-wrap:wrap;justify-content:space-between;margin-bottom:.2rem;gap:2px}input{border-radius:.2rem;border:none;border-bottom:1px solid #515151}.error-message{color:#dc4e4e;font-style:italic}
