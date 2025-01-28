@@ -6,7 +6,7 @@ const Navbar = () => {
     return (
         <header>
             <nav className="navbar">
-                <a href="/">
+                <a href="/task-manager-app/">
                     <h1>Dielan&apos;s Task Manager</h1>
                 </a>
                 <LoginNavButton />
