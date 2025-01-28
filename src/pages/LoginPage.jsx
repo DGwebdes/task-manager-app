@@ -28,7 +28,7 @@ const LoginPage = () => {
     const onSubmit = async(data) => {
         try {
             await login(data);
-            navigate('/dashboard');
+            navigate('/task-manager-app/dashboard');
         } catch (error) {
             console.error('Error occurred:', error);
             setErrorMessage(Error === 'Invalid credentials' ? 'User not Found' : 'Unable to login');
@@ -50,7 +50,7 @@ const LoginPage = () => {
                     {errorMessage && <p>{errorMessage}</p>}
                 </form>
             </div>
-            <button onClick={() => navigate('/register')}>Register</button>
+            <button onClick={() => navigate('/task-manager-app/register')}>Register</button>
         </main>
     )
 }
