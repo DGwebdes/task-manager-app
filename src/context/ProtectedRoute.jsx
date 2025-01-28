@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
 
     useEffect(() => {
         if (!loading && !authState.isAuthenticated) {
-            navigate('/task-manager-app/login');
+            navigate('/login');
         }
     },[loading, authState.isAuthenticated, navigate])
 
