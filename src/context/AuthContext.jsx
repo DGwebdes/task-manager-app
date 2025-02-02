@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect, useContext } from 'react';
-import { Navigate } from 'react-router-dom';
 import API from '../services/api';
 
 export const AuthContext = createContext();
@@ -13,7 +12,7 @@ const useAuth = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        console.log("AuthContext logging")
+        // console.log("AuthContext logging")
 
         const token = localStorage.getItem('authToken');
         const user = JSON.parse(localStorage.getItem('authUser'));
@@ -21,7 +20,7 @@ const useAuth = () => {
             // console.log('user authenticated')
             setAuthState({ token, user, isAuthenticated: true });
         } else {
-            console.log('user not authenticated')
+            // console.log('user not authenticated')
             setAuthState({ token: null, user: null, isAuthenticated: false });
         }
         setLoading(false);
