@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect, useContext } from 'react';
-import API from '../services/api';
+import { createContext, useState, useEffect, useContext } from "react";
+import API from "../services/api";
 
 export const AuthContext = createContext();
 
@@ -14,9 +14,9 @@ const useAuth = () => {
     useEffect(() => {
         // console.log("AuthContext logging")
 
-        const token = localStorage.getItem('authToken');
-        const user = JSON.parse(localStorage.getItem('authUser'));
-        if (token && user){
+        const token = localStorage.getItem("authToken");
+        const user = JSON.parse(localStorage.getItem("authUser"));
+        if (token && user) {
             // console.log('user authenticated')
             setAuthState({ token, user, isAuthenticated: true });
         } else {
@@ -24,38 +24,38 @@ const useAuth = () => {
             setAuthState({ token: null, user: null, isAuthenticated: false });
         }
         setLoading(false);
-    },[]);
+    }, []);
 
     //Login method
     const login = async (credentials) => {
         try {
-            const response = await API.post('/auth/login', credentials);
+            const response = await API.post("/auth/login", credentials);
             // console.log("Response from request authContext: ", response);
-            const {token, user, refreshToken } = response.data;
+            const { token, user, refreshToken } = response.data;
 
-            if (!token || !user || !refreshToken){
+            if (!token || !user || !refreshToken) {
                 // console.log('User not found or Invalid credentials');
-                throw new Error('Invalid credentials');
+                throw new Error("Invalid credentials");
             }
-            localStorage.setItem('authToken', token);
-            localStorage.setItem('refreshToken', refreshToken);
-            localStorage.setItem('authUser', JSON.stringify(user));
+            localStorage.setItem("authToken", token);
+            localStorage.setItem("refreshToken", refreshToken);
+            localStorage.setItem("authUser", JSON.stringify(user.email));
 
             //update state
             setAuthState({ token, user, isAuthenticated: true });
             //redirect to dashboard
             return;
         } catch (error) {
-            console.log('Login failed', error.response?.data || error.message);
-            throw new Error('Invalid credentials');
+            console.log("Login failed", error.response?.data || error.message);
+            throw new Error("Invalid credentials");
         }
     };
 
     const logout = () => {
         //clear storage and state
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('refreshToken');
-        localStorage.removeItem('authUser');
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("authUser");
         setAuthState({ token: null, user: null, isAuthenticated: false });
 
         //redirect home
@@ -74,8 +74,8 @@ const useAuth = () => {
 const AuthProvider = ({ children }) => {
     const auth = useAuth();
 
-    return <AuthContext.Provider value={auth}>{ children }</AuthContext.Provider>
-}
+    return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
+};
 
-export const useAuthContext = ()=> useContext(AuthContext);
+export const useAuthContext = () => useContext(AuthContext);
 export default AuthProvider;
