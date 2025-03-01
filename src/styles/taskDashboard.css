@@ -19,3 +19,7 @@
 .task-card > button {
     margin: 3px;
 }
+
+form {
+    margin-bottom: 10px;
+}

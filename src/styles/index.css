@@ -1,155 +1,172 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 body {
-  margin: 0 auto;
-  /* padding: 0.5rem; */
+    margin: 0 auto;
+    /* padding: 0.5rem; */
+    background: rgb(158, 157, 176);
+    background: linear-gradient(
+        45deg,
+        rgba(158, 157, 176, 1) 0%,
+        rgba(92, 107, 192, 1) 0%,
+        rgba(9, 9, 11, 1) 100%
+    );
 }
 
 #root {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
-a:hover, a:focus {
-  color: #5c6bc0; /* Subtle hover color */
+a:hover,
+a:focus {
+    color: #5c6bc0; /* Subtle hover color */
 }
-button:hover, button:focus {
-  background-color: #5c6bc0;
-  cursor: pointer;
+button:hover,
+button:focus {
+    background-color: #5c6bc0;
+    cursor: pointer;
 }
-
 
 main {
-  /* border: 1px solid red; */
-  width: 75%;
-  min-height: 100vh;
+    /* border: 1px solid red; */
+    width: 75%;
+    min-height: 100vh;
 
-  align-self: center;
+    align-self: center;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 main > section > img {
-  width: 350px;
-  height: 350px;
+    width: 350px;
+    height: 350px;
 }
 
 section {
-  width: 100%;
-  /* border: 1px solid red; */
-  display: flex;
+    width: 100%;
+    min-height: 50vh;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .main-content {
-  align-self: center;
-  max-width: 75%;
-  padding: .5rem;
+    align-self: center;
+    max-width: 75%;
+    padding: 0.5rem;
 }
 
 .lists {
-  display: flex;
+    display: flex;
 }
 .content-list {
-  flex: 1;
-  padding: .5rem;
-  /* border: 1px solid green; */
-}
-
-h1 {
-  font-size: 2.2em;
-  line-height: 1.1;
+    flex: 1;
+    padding: 0.5rem;
+    /* border: 1px solid green; */
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+    :root {
+        color: #213547;
+        background-color: #ffffff;
+    }
+    a:hover {
+        color: #747bff;
+    }
+    button {
+        background-color: #f9f9f9;
+    }
 }
-
 
 /* Large screens (desktops and larger tablets) */
 @media (min-width: 1200px) {
-  main {
-    width: 60%; /* Reduce width to avoid overwhelming the viewport */
-  }
-  h1 {
-    font-size: 2.5em;
-  }
-  .content-list > img {
-    width: 150px;
-    height: 150px; /* Larger image size for better visibility */
-  }
+    main {
+        width: 60%; /* Reduce width to avoid overwhelming the viewport */
+    }
+    h1 {
+        font-size: 4em;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+    p {
+        font-size: 18px;
+    }
+    .content-list > img {
+        width: 150px;
+        height: 150px; /* Larger image size for better visibility */
+    }
 }
 
 /* Medium screens (tablets, small laptops) */
 @media (min-width: 768px) and (max-width: 1199px) {
-  main {
-    width: 80%; /* Keep the layout balanced on medium screens */
-  }
-  .content-list > img {
-    width: 130px;
-    height: 130px; /* Slightly smaller images */
-  }
-  h1 {
-    font-size: 2em;
-  }
+    main {
+        width: 80%; /* Keep the layout balanced on medium screens */
+    }
+    .content-list > img {
+        width: 130px;
+        height: 130px; /* Slightly smaller images */
+    }
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
 }
 
 /* Small screens (phones) */
 @media (max-width: 767px) {
-  main {
-    width: 90%; /* Utilize most of the screen width */
-    padding: 0.5rem; /* Reduce padding for small screens */
-  }
-  section {
-    flex-direction: column; /* Stack sections vertically */
-    align-items: center;
-  }
-  .content-list {
-    padding: 0.25rem; /* Adjust padding for smaller space */
-  }
-  .content-list > img {
-    width: 100px;
-    height: 100px; /* Reduce image size for small screens */
-  }
-  h1 {
-    font-size: 1.8em;
-  }
+    main {
+        width: 90%; /* Utilize most of the screen width */
+        padding: 0.5rem; /* Reduce padding for small screens */
+    }
+    section {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center;
+    }
+    .content-list {
+        padding: 0.25rem; /* Adjust padding for smaller space */
+    }
+    .content-list > img {
+        width: 100px;
+        height: 100px; /* Reduce image size for small screens */
+    }
+    h1 {
+        font-size: 1.8em;
+    }
 }
 
 /* Extra small screens (very narrow phones) */
 @media (max-width: 480px) {
-  h1 {
-    font-size: 1.5em; /* Ensure text fits without wrapping awkwardly */
-  }
-  .content-list > img {
-    width: 80px;
-    height: 80px; /* Further reduce image size */
-  }
+    h1 {
+        font-size: 1.5em; /* Ensure text fits without wrapping awkwardly */
+    }
+    .content-list > img {
+        width: 80px;
+        height: 80px; /* Further reduce image size */
+    }
 }

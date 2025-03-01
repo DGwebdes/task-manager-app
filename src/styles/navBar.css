@@ -1,30 +1,37 @@
 header {
-  max-height: fit-content;
+    max-height: fit-content;
 }
 
 .navbar {
-  padding: 0 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  background-color: transparent;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: transparent;
+}
+
+#navbar-img {
+    width: 75px;
+}
+#navbar-login {
+    width: 50px;
 }
 
 button {
-  padding: 8px 12px;
-  border: none;
-  background-color: #1a1a1a;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  align-self: center;
+    padding: 8px 12px;
+    border: none;
+    background-color: #1a1a1a;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: center;
 }
 button:disabled {
-  background-color: #6c757d;
-  cursor: not-allowed;
+    background-color: #6c757d;
+    cursor: not-allowed;
 }
 button:focus,
 button:focus-visible {
-  outline: 2px auto -webkit-focus-ring-color;
+    outline: 2px auto -webkit-focus-ring-color;
 }

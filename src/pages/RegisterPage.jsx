@@ -10,7 +10,7 @@ const FormField = ({ label, type, register, errors }) => {
     const fieldName = label.toLowerCase().replace(" ", "");
     return (
         <>
-            <div>
+            <div className="form-field">
                 <label>{label}:</label>
                 <input
                     type={type}

@@ -1,18 +1,18 @@
-import LoginNavButton from './LoginNavButton';
+import LoginNavButton from "./LoginNavButton";
 
-import '../styles/navBar.css'
+import "../styles/navBar.css";
 
 const Navbar = () => {
     return (
         <header>
             <nav className="navbar">
                 <a href="/">
-                    <h1>Dielan&apos;s Task Manager</h1>
+                    <img src="/manicon.png" alt="navbar-icon" id="navbar-img" />
                 </a>
                 <LoginNavButton />
             </nav>
         </header>
-    )
-}
+    );
+};
 
 export default Navbar;
