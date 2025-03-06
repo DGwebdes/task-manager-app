@@ -36,24 +36,15 @@ const HomePage = () => {
             </section>
             <section>
                 <div className="list-content">
-                    <h2>
-                        👋 Welcome aboard—let&apos;s get things done together!
-                    </h2>
+                    <h2>👋 Let&apos;s get things done together!</h2>
                     <div className="lists">
                         <div className="content-list">
                             <img src="/free.png" alt="" />
-                            <p>
-                                Create your account in just a few clicks. No
-                                long forms—just your name, email, and a strong
-                                password to get started!
-                            </p>
+                            <p>Create your account in just a few clicks.</p>
                         </div>
                         <div className="content-list">
                             <img src="/smart.png" alt="" />
-                            <p>
-                                Login and dive into a world where managing your
-                                tasks feels effortless.
-                            </p>
+                            <p>Login and manage your tasks effortlessly.</p>
                         </div>
                         <div className="content-list">
                             <img src="/daily.png" alt="" />

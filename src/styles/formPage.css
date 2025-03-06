@@ -7,7 +7,7 @@
     justify-content: space-evenly;
     padding: 1rem 2rem;
     border: 1px solid #fcfcfcfc;
-    border-radius: 2rem 6px 6px 2rem;
+    border-radius: 6px;
     margin-bottom: 0.2rem;
     overflow: auto;
 }

@@ -11,7 +11,11 @@ const LoginNavButton = () => {
     };
     return (
         <>
-            <button onClick={handleClick} disabled={loading}>
+            <button
+                id="nav-button-user"
+                onClick={handleClick}
+                disabled={loading}
+            >
                 {loading ? (
                     "Loading..."
                 ) : authState.isAuthenticated ? (
