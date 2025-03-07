@@ -88,7 +88,7 @@ section {
     /* border: 1px solid green; */
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
     :root {
         color: rgba(9, 9, 11, 1);
         background-color: #ffffff;
@@ -99,7 +99,7 @@ section {
     button {
         background-color: #f9f9f9;
     }
-}
+} */
 
 /* Large screens (desktops and larger tablets) */
 @media (min-width: 1200px) {
